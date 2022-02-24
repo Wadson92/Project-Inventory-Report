@@ -1,7 +1,11 @@
-from abc import ABC, abstractmethod
+from abc import ABC
 
 
 class Importer(ABC):
-    @abstractmethod
-    def import_data(self, file_path):
-        raise NotImplementedError
+    FILE_EXTENSION = "."
+
+    @classmethod
+    def import_data(cls, file_path):
+        *path, extension = file_path.split(".")
+        if f".{extension}" != cls.FILE_EXTENSION:
+            raise ValueError("Arquivo inválido")
