@@ -1,6 +1,8 @@
 from inventory_report.importer.csv_importer import CsvImporter
 from inventory_report.importer.json_importer import JsonImporter
 from inventory_report.importer.xml_importer import XmlImporter
+from inventory_report.reports.simple_report import SimpleReport
+from inventory_report.reports.complete_report import CompleteReport
 
 
 class Inventory:
@@ -16,6 +18,5 @@ class Inventory:
             raise ValueError("Tipo de arquivo não aceito")
 
         if report_type == "simples":
-            print(inventory)  # generate
-        else:
-            print(inventory)  # generate
+            return SimpleReport.generate(inventory)
+        return CompleteReport.generate(inventory)
