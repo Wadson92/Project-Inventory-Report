@@ -6,6 +6,5 @@ class Importer(ABC):
 
     @classmethod
     def import_data(cls, file_path):
-        *path, extension = file_path.split(".")
-        if f".{extension}" != cls.FILE_EXTENSION:
+        if not file_path.endswith(cls.FILE_EXTENSION):
             raise ValueError("Arquivo inválido")
